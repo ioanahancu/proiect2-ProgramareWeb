@@ -1,0 +1,25 @@
+{
+  "name": "proiect2-ioanahancu",
+  "version": "1.0.0",
+  "description": "\"# proiect2-ioanahancu\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HDR-Organization/proiect2-ioanahancu.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HDR-Organization/proiect2-ioanahancu/issues"
+  },
+  "homepage": "https://github.com/HDR-Organization/proiect2-ioanahancu#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0"
+  }
+}
