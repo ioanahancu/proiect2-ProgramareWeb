@@ -1,0 +1,47 @@
+header, footer {
+	background-color: rgb(9, 71, 104);
+	background-image: linear-gradient(rgb(9, 71, 104),rgb(31, 170, 245)); 
+	color: white;
+	text-align: center;
+}
+
+
+
+body {
+	background-color: teal;
+	background-image: url(../images/background.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	color:white;
+	margin-left: 20em;
+	margin-right: 20em;
+	text-align: center;
+	
+}
+
+form{
+	text-align: left;
+	margin-left: 5em;
+} 
+
+form input{
+	margin-left: 10em;
+}
+
+form button {
+	background-color: teal;
+	text-align: center;
+	color:white;
+	margin-left: 10em;
+	width: 200px;
+	height: 70px;
+}
+
+#rezultate{
+	text-align: center;
+}
+
+#rezultate h3{
+	padding-bottom: 18em;
+}
