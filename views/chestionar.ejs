@@ -1,40 +1,25 @@
+<h2> Quiz </h2>
 <form action="/rezultat-chestionar" method="POST">
-	<p> <%=intrebari[0].intrebare%> </p>
-	<input type="radio" name="answer1" value="<%=intrebari[0].variante[0]%>" id="var1">
-	<label for="var1"> <%=intrebari[0].variante[0]%> </label>
-	<br/>
-	<input type="radio" name="answer1" value="<%=intrebari[0].variante[1]%>" id="var2">
-	<label for="var2"> <%=intrebari[0].variante[1]%> </label>
-	<br/>
-	<input type="radio" name="answer1" value="<%=intrebari[0].variante[2]%>" id="var3">
-	<label for="var3"> <%=intrebari[0].variante[2]%> </label>
-	<br/>
-	<br/>
+	<% for( let i1=0; i1 < intrebari.length; i1++)
+	{
+		%>
+		<label> <%= intrebari[i1].intrebare %> </label>
+		<br />
+		<br />
 
-	<p> <%=intrebari[1].intrebare%> </p>
-	<input type="radio" name="answer2" value="<%=intrebari[0].variante[0]%>" id="var1">
-	<label for="var1"> <%=intrebari[0].variante[0]%> </label>
-	<br/>
-	<input type="radio" name="answer2" value="<%=intrebari[0].variante[1]%>" id="var2">
-	<label for="var2"> <%=intrebari[0].variante[1]%> </label>
-	<br/>
-	<input type="radio" name="answer2" value="<%=intrebari[0].variante[2]%>" id="var3">
-	<label for="var3"> <%=intrebari[0].variante[2]%> </label>
-	<br/>
-	<br/>
+		<% for(let i2=0; i2 < intrebari[i1].variante.length; i2++)
+		{
+			%>
+			<input type="radio" name="<%= i1 %>" value="<%= i2%>"></input>
+			<label for="<%= i1 %>"> <%= intrebari[i1].variante[i2] %> </label>
+			<br/>
+			<br/>
 
-	<p> <%=intrebari[2].intrebare%> </p>
-	<input type="radio" name="answer3" value="<%=intrebari[0].variante[0]%>" id="var1">
-	<label for="var1"> <%=intrebari[0].variante[0]%> </label>
-	<br/>
-	<input type="radio" name="answer3" value="<%=intrebari[0].variante[1]%>" id="var2">
-	<label for="var2"> <%=intrebari[0].variante[1]%> </label>
-	<br/>
-	<input type="radio" name="answer3" value="<%=intrebari[0].variante[2]%>" id="var3">
-	<label for="var3"> <%=intrebari[0].variante[2]%> </label>
-	<br/>
-	<br/>
-	
-	
+		<% } %>
+
+		
+ 	<% } %>
+	<br />
+	<br />
 	<button type="submit">Înregistrează</button>
 </form>
