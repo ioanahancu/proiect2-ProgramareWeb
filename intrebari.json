@@ -1,17 +1,17 @@
 [
 	{
-		"intrebare": "Întrebarea 1",
-		"variante": ["varianta 1", "varianta 2", "varianta 3", "varianta 4"],
+		"intrebare": "Cine a inventat hârtia?",
+		"variante": ["Florin Piersic", "Egiptenii", "Cai Lun", "Donald Trump"],
 		"corect": 2
 	},
 	{
-		"intrebare": "Întrebarea 2",
-		"variante": ["varianta 1", "varianta 2", "varianta 3", "varianta 4"],
+		"intrebare": "Care e cel mai popular program cititor de fișiere PDF? ",
+		"variante": ["Microsoft Word", "Adobe Reader", "WinRar", "Email"],
 		"corect": 1
 	},
 	{
-		"intrebare": "Întrebarea 3",
-		"variante": ["varianta 1", "varianta 2", "varianta 3", "varianta 4"],
+		"intrebare": "Când se sărbătorește Ziua Mondială a Cărților?",
+		"variante": ["23 aprilie", "8 martie", "14 februarie", "24 decembrie"],
 		"corect": 0
 	}
 
