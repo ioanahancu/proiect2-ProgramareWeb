@@ -46,7 +46,7 @@ form button {
 	padding-bottom: 18em;
 }
 
-#index a:visited, #index a:link{
+#index a:visited, #index a:link, #textLogat a:visited, #textLogat a:link{
 	text-decoration: none;
 	color:inherit;
 	border: 2px solid white;

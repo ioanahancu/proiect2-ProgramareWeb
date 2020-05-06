@@ -1,4 +1,4 @@
-<% if( Object.entries(prajituri).length == 0 || ( !(prajituri.hasOwnProperty('utlizator')) )) {  %>
+<% if (utilizator == null) { %>
 	<h2 id="index">
 		<br/>
 		<br/>
@@ -7,10 +7,10 @@
 
 <% } else  { %>
 	<div id="index">
-		<p id="textLogat"> Logat ca <%=prajituri['utlizator']%>. 
+		<p id="textLogat"> Logat ca <%= utilizator%>. 
 			<a href="delogare">Delogare</a>
 		</p>
-	   <h2>Bine ai venit, <%= prajituri['utlizator'] %>!</h2>
+	   <h2 id="index">Bine ai venit, <%= utilizator %>!</h2>
    </div> 
 <% } %> 
 

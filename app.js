@@ -37,17 +37,31 @@ app.use(session({
 // proprietățile obiectului Request - req - https://expressjs.com/en/api.html#req
 // proprietățile obiectului Response - res - https://expressjs.com/en/api.html#res
 app.get('/', (req, res) => {
-	console.log(req.cookies);
-	res.render('index', { prajituri: req.cookies});
+	// console.log(req.cookies);
+	if(req.session && req.session.username){
+		var utilizator = req.session.username;
+		res.render('index', { utilizator: utilizator});
+	}
+	else{
+		res.render('index', { utilizator: null});
+	}	
 });
 
 // la accesarea din browser adresei http://localhost:6789/chestionar se va apela funcția specificată
 app.get('/chestionar', (req, res) => {
-	fs.readFile('intrebari.json', (err,data) => {
-		if(err) throw err;
-		let intrebari = JSON.parse(data);
-		res.render('chestionar', {intrebari: intrebari});
-	})
+	if(req.session && req.session.username)
+	{
+		var utilizator = req.session.username;
+		fs.readFile('intrebari.json', (err,data) => {
+			if(err) throw err;
+			let intrebari = JSON.parse(data);
+			res.render('chestionar', {intrebari: intrebari, utilizator: utilizator});
+		});
+	}
+	else{
+		res.redirect('/autentificare');
+	}
+	
 });
 
 app.post('/rezultat-chestionar', (req, res) => {
@@ -71,27 +85,42 @@ app.post('/rezultat-chestionar', (req, res) => {
 });
 
 app.get('/autentificare', (req,res) =>{
-	 res.render('autentificare', { prajituri: req.cookies });
+	var mesajEroare=req.cookies.mesajEroare;
+	res.render('autentificare', { mesajEroare: mesajEroare });
 	 
 });
 
 app.post('/verificare-autentificare', (req, res) => {
 		// console.log(req.body);
-		var user = req.body['user'];
-		var passw = req.body['password'];
-		if( user == "Ioana" && passw == "buburuza"){
-			res.cookie('utlizator', user);		
-			res.redirect('/');			
-		}
-		else{
-			res.cookie('mesajEroare', 'autentificareInvalida');
-			res.redirect('/autentificare');
-		}		
+		res.clearCookie();
+		var user1 = req.body['user'];
+		var passw1 = req.body['password'];
+		fs.readFile('utilizatori.json', (err,data)=> {
+			if(err) throw err;
+			var users = JSON.parse(data);
+			var ok=0;
+			users.forEach(user => {
+				if(user1 == user.utilizator && passw1 == user.parola){
+					req.session.username = user.utilizator;
+					req.session.nume=user.nume;
+					req.session.prenume=user.prenume;
+					res.cookie('utlizator', user1);	
+					res.cookie('mesajEroare','', {maxAge:0});	
+					res.redirect('/');
+					ok=1;	
+					return;	
+				}
+			});
+			if(ok==0){
+				res.cookie('mesajEroare', 'autentificareInvalida');
+				res.redirect('/autentificare');
+			}
+		});	
 });
 
-// app.use(function(req, res, next) {
-// 	res.locals.user = req.session.user;
-// 	next();
-//   });
+app.get('/delogare', (req, res) => {
+	req.session.destroy;
+	res.redirect('/');
+});
 
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:`));
