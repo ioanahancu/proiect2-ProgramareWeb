@@ -25,7 +25,7 @@ form{
 	margin-left: 5em;
 } 
 
-form input{
+#quiz input{
 	margin-left: 10em;
 }
 
@@ -35,13 +35,20 @@ form button {
 	color:white;
 	margin-left: 10em;
 	width: 200px;
-	height: 70px;
+	height: 50px;
 }
 
 #rezultate{
 	text-align: center;
 }
 
-#rezultate h3{
+#rezultate h3, #index, #autentificare, #welcome  {
 	padding-bottom: 18em;
 }
+
+#index a:visited, #index a:link{
+	text-decoration: none;
+	color:inherit;
+	border: 2px solid white;
+	padding: 3px;
+} 

@@ -1,0 +1,19 @@
+<% if( Object.entries(prajituri).length == 0 || ( !(prajituri.hasOwnProperty('utlizator')) )) {  %>
+	<h2 id="index">
+		<br/>
+		<br/>
+		<a href="autentificare"> Autentificare </a>
+	</h2>
+
+<% } else  { %>
+	<div id="index">
+		<p id="textLogat"> Logat ca <%=prajituri['utlizator']%>. 
+			<a href="delogare">Delogare</a>
+		</p>
+	   <h2>Bine ai venit, <%= prajituri['utlizator'] %>!</h2>
+   </div> 
+<% } %> 
+
+	
+
+

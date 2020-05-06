@@ -1,0 +1,29 @@
+<% if( Object.entries(prajituri).length == 0 || ( !(prajituri.hasOwnProperty('mesajEroare')))) {  %>
+	<form id="autentificare" action="/verificare-autentificare" method="POST">
+		<label for="user">Utilizator</label>&nbsp;
+		<input type="text" name="user" value="Utilizator">
+		<br/>
+		<br/>
+		<label for="password">Parolă</label> &nbsp; &nbsp; &nbsp;
+		<input type="password" name="password" value="parola">
+		<br/>
+		<br/>
+		<button type="submit"><i>Autentificare</i></button>
+	</form>
+	<% } else  { %>
+		<h2 style="color: red;"> Utilizator sau parolă greșite !!!</h2>
+		<form id="autentificare" action="/verificare-autentificare" method="POST">
+			<label for="user">Utilizator</label>&nbsp;
+			<input type="text" name="user" value="Utilizator">
+			<br/>
+			<br/>
+			<label for="password">Parolă</label> &nbsp; &nbsp; &nbsp;
+			<input type="password" name="password" value="parola">
+			<br/>
+			<br/>
+			<button type="submit"><i>Autentificare</i></button>
+		</form>
+	<%} %>
+	
+	
+	
