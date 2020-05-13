@@ -1,0 +1,9 @@
+<h1> Coșul dumneavoastră</h1>
+<ul id="cos">
+	<% if(produse != null){
+		for(let i=0; i<produse.length; i++) { %>
+			<li> <%= produse[i] %></li>
+		<%}%>
+	<%}%>
+	
+</ul>

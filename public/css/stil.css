@@ -42,7 +42,7 @@ form button {
 	text-align: center;
 }
 
-#rezultate h3, #index, #autentificare, #welcome  {
+#rezultate h3, #autentificare, #welcome, #cos  {
 	padding-bottom: 18em;
 }
 
@@ -52,3 +52,29 @@ form button {
 	border: 2px solid white;
 	padding: 3px;
 } 
+
+#textLogat, #cosCump{
+	text-align: right;
+}
+
+span.produs {
+	font-size : 2em;
+	border:  2px solid teal;
+	
+}
+
+span.produs:hover{
+	background-color: teal;
+
+}
+#produse button
+{
+	background-color: lightcoral;
+	text-align: center;
+	color:white;
+	height: 40px;
+}
+
+li {
+	font-size: 2em;
+}

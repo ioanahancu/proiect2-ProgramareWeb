@@ -3,6 +3,8 @@
 		<br/>
 		<br/>
 		<a href="autentificare"> Autentificare </a>
+		<br/>
+		<br/>
 	</h2>
 
 <% } else  { %>
@@ -10,9 +12,37 @@
 		<p id="textLogat"> Logat ca <%= utilizator%>. 
 			<a href="delogare">Delogare</a>
 		</p>
-	   <h2 id="index">Bine ai venit, <%= utilizator %>!</h2>
+		<p id="cosCump">
+			<a href="vizualizare-cos">Coșul de cumpărături</a>
+		</p>
+		<button onclick="location.href = '/creare-bd';" style="background-color: rgb(18, 121, 238); color: white;">Creare BD</button>
+		<button onclick="location.href = '/inserare-bd';" style="background-color: rgb(18, 121, 238); color: white;" >Încarcare BD</button>
+		  <h2>Bine ai venit, <%= utilizator %>!</h2>	  
+		  <br/>
+		  <br/>
    </div> 
 <% } %> 
+<div id="produse">
+	<% for(let i1=1; i1 < lista_produse.length; i1+=2){ %>
+		<span class="produs"><%=lista_produse[i1] %> </span> &nbsp; &nbsp; &nbsp;
+		<br/>
+		<br/>
+		<% if(utilizator==null) { %>
+			<button type="button" disabled style="background-color: rgb(245, 141, 181) ; color: grey;"> Adaugă în coș</button>
+			<br/>
+			<br/>
+		<% }else {%>
+			<form action="/adaugare-cos" method="POST">
+				<input type="hidden" name="id" value="<%=lista_produse[i1-1] %>"> 
+				<button type="submit"> Adaugă în coș</button>
+			</form>
+			<br/>
+			<br/>
+		<%}%>
+		
+	<% } %>
+</div>
+
 
 	
 
