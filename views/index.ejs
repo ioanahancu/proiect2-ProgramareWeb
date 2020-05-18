@@ -1,10 +1,7 @@
 <% if (utilizator == null) { %>
-	<h2 id="index">
-		<br/>
-		<br/>
+	<h2 id="index" style="text-align: right;">
+		<span>Nu sunteți autentificat</span> &nbsp; &nbsp; &nbsp; &nbsp;
 		<a href="autentificare"> Autentificare </a>
-		<br/>
-		<br/>
 	</h2>
 
 <% } else  { %>
@@ -15,14 +12,16 @@
 		<p id="cosCump">
 			<a href="vizualizare-cos">Coșul de cumpărături</a>
 		</p>
-		<button onclick="location.href = '/creare-bd';" style="background-color: rgb(18, 121, 238); color: white;">Creare BD</button>
-		<button onclick="location.href = '/inserare-bd';" style="background-color: rgb(18, 121, 238); color: white;" >Încarcare BD</button>
-		  <h2>Bine ai venit, <%= utilizator %>!</h2>	  
-		  <br/>
-		  <br/>
+		<span> <h2>Bine ai venit, <%= utilizator %>!</h2></span>
+		<div style="text-align: right;">
+			<button onclick="location.href = '/creare-bd';" style="background-color: rgb(18, 121, 238); color: white;">Creare BD</button>
+			<button onclick="location.href = '/inserare-bd';" style="background-color: rgb(18, 121, 238); color: white;" >Încarcare BD</button>
+		</div>
+		  
    </div> 
 <% } %> 
 <div id="produse">
+	<h1 style="text-align: left;">Produse</h2>
 	<% for(let i1=1; i1 < lista_produse.length; i1+=2){ %>
 		<span class="produs"><%=lista_produse[i1] %> </span> &nbsp; &nbsp; &nbsp;
 		<br/>

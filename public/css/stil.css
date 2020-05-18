@@ -78,3 +78,17 @@ span.produs:hover{
 li {
 	font-size: 2em;
 }
+
+#meniu {
+	font-size: 1.5em;
+	text-align: left;
+}
+
+#meniu a:link, a:visited{
+	text-decoration: none;
+	color: white;
+}
+
+#meniu a:hover{
+	background-color: teal;
+}
