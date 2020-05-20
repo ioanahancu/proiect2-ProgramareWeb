@@ -9,6 +9,11 @@
 		<p id="textLogat"> Logat ca <%= utilizator%>. 
 			<a href="delogare">Delogare</a>
 		</p>
+		<% if(rol == "admin") { %>
+			<div style="text-align: right;">
+				<a id="pagAdmin" href="admin">Pagina admin</a>
+			</div>
+		<% } %>
 		<p id="cosCump">
 			<a href="vizualizare-cos">Coșul de cumpărături</a>
 		</p>
@@ -20,19 +25,19 @@
 		  
    </div> 
 <% } %> 
-<div id="produse">
+<div id="produse" >
 	<h1 style="text-align: left;">Produse</h2>
 	<% for(let i1=1; i1 < lista_produse.length; i1+=2){ %>
-		<span class="produs"><%=lista_produse[i1] %> </span> &nbsp; &nbsp; &nbsp;
-		<br/>
-		<br/>
+		<span class="produs"><%=lista_produse[i1] %> </span> &nbsp; 
+		
 		<% if(utilizator==null) { %>
-			<button type="button" disabled style="background-color: rgb(245, 141, 181) ; color: grey;"> Adaugă în coș</button>
+			<button type="button" disabled style="background-color: rgb(245, 141, 181) ; color: grey; height: 2em;"> Adaugă în coș</button>
 			<br/>
 			<br/>
 		<% }else {%>
 			<form action="/adaugare-cos" method="POST">
 				<input type="hidden" name="id" value="<%=lista_produse[i1-1] %>"> 
+				<br/>
 				<button type="submit"> Adaugă în coș</button>
 			</form>
 			<br/>

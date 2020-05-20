@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 var cookieParser=require('cookie-parser');
 var session=require('express-session');
 
+var start;
 
 var mysql = require('mysql');
 var con = mysql.createConnection({
@@ -37,14 +38,31 @@ app.use(session({
 	resave:false,
 	saveUninitialized:false,
 	cookie:{
-		maxAge:100000
+		maxAge:1000000
 	}
 }));
+//blocare dupa un nr de incercari esuate
+app.use(function (req, res, next) {
+	let nextStart=new Date;
+	if(req.session.incercariEsuate == undefined || nextStart - start >= 5000 || req.session.incercariEsuate<=3)
+	{
+		next();
+	}
+	else if(req.session.incercariEsuate>3)
+	{
+		res.send("Acces blocat pentru 5 secunde");
+	}
+
+});
 
 // la accesarea din browser adresei http://localhost:6789/ se va returna view-ul index.ejs
 // proprietățile obiectului Request - req - https://expressjs.com/en/api.html#req
 // proprietățile obiectului Response - res - https://expressjs.com/en/api.html#res
 app.get('/', (req, res) => {
+	if(isNaN(req.session.incercariEsuate))
+	{
+		req.session.incercariEsuate = 0;
+	}
 	var lista_produse=[];
 	if(con.state == 'disconnected')
 	{
@@ -71,7 +89,8 @@ app.get('/', (req, res) => {
 
 			}
 			var utilizator = req.session.username;
-			res.render('index', { utilizator: utilizator, lista_produse: lista_produse});
+			var rol=req.session.rol;
+			res.render('index', { utilizator: utilizator, rol:rol, lista_produse: lista_produse});
 		}
 		else{
 			req.session.idProduse = [];
@@ -125,6 +144,7 @@ app.get('/autentificare', (req,res) =>{
 app.post('/verificare-autentificare', (req, res) => {
 		// console.log(req.body);
 		res.clearCookie();
+		var rol1=req.body['rol'];
 		var user1 = req.body['user'];
 		var passw1 = req.body['password'];
 		fs.readFile('utilizatori.json', (err,data)=> {
@@ -132,10 +152,11 @@ app.post('/verificare-autentificare', (req, res) => {
 			var users = JSON.parse(data);
 			var ok=0;
 			users.forEach(user => {
-				if(user1 == user.utilizator && passw1 == user.parola){
+				if(user1 == user.utilizator && passw1 == user.parola && rol1==user.rol){
 					req.session.username = user.utilizator;
 					req.session.nume=user.nume;
 					req.session.prenume=user.prenume;
+					req.session.rol=user.rol;
 					res.cookie('utlizator', user1);	
 					res.cookie('mesajEroare','', {maxAge:0});	
 					res.redirect('/');
@@ -235,5 +256,62 @@ app.get('/vizualizare-cos', (req, res) => {
 	}
 	
 });
+
+//Pagina admin
+app.get('/admin', (req, res) => {
+	if(req.session && req.session.username && req.session.rol == "admin")
+	{
+		res.render('admin');
+	}
+	else
+	{
+		console.log("Nu aveți acces la această pagină");
+		res.redirect("/");
+	}
+});
+
+//Adaugare produs
+app.post('/adaugare-produs', (req, res) => {
+	var numeProdus = req.body['numeProdus'];
+	if(con.state == 'disconnected')
+	{
+		con.connect(function(err){
+			if(err) throw err;
+			console.log("Connected");
+		});
+	}
+	con.query("USE cumparaturi");
+	var sql = "INSERT INTO produse(nume_produs) VALUES (\" " + numeProdus +"\" )";
+	con.query(sql, function(err, result){
+		if(err) throw err;
+		console.log("Number of records inserted: " + result.affectedRows);
+	});
+	res.redirect('/admin');
+});
+
+var countStart = 0;
+app.get('*', function(req, res){
+	
+	let aici = new Date();
+
+	if(isNaN(req.session.incercariEsuate) || (aici - start >= 5000 && countStart==1 ))
+	{
+		req.session.incercariEsuate = 0;
+	}
+
+	req.session.incercariEsuate += 1;
+
+	if(req.session.incercariEsuate <= 3)
+	{
+		res.send('404, Pagina nu a fost gasita. Incercari esuate: ' + req.session.incercariEsuate, 404);
+		countStart = 0;
+	}
+	else if(req.session.incercariEsuate>3 && countStart==0)
+	{
+		countStart = 1;
+		start=new Date();
+		res.send("Acces blocat pentru 5 secunde");				
+	}
+  });
 
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:`));

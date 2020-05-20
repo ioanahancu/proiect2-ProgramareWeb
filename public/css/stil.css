@@ -11,13 +11,13 @@ body {
 	background-color: teal;
 	background-image: url(../images/background.png);
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: cover; 
+	background-attachment: fixed;
 	background-position: center;
 	color:white;
 	margin-left: 20em;
 	margin-right: 20em;
-	text-align: center;
-	
+	text-align: center;	
 }
 
 form{
@@ -42,7 +42,7 @@ form button {
 	text-align: center;
 }
 
-#rezultate h3, #autentificare, #welcome, #cos  {
+#rezultate h3, #autentificare, #welcome, #cos, #adaugareProdus  {
 	padding-bottom: 18em;
 }
 

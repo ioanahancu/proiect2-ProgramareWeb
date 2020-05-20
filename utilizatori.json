@@ -3,12 +3,21 @@
 		"utilizator": "test",
 		"parola": "test",
 		"nume":"abc",
-		"prenume":"def"
+		"prenume":"def",
+		"rol": "user"
 	},
 	{
 		"utilizator":"Ioana",
 		"parola":"abc",
 		"nume":"Hancu",
-		"prenume":"Ioana"
+		"prenume":"Ioana",
+		"rol":"user"
+	},
+	{
+		"utilizator":"admin",
+		"parola":"9!!",
+		"nume": "admin",
+		"prenume":"admin",
+		"rol":"admin"
 	}
 ]

@@ -2,6 +2,13 @@
 	<h2 style="color: red;"> Utilizator sau parolă greșite !!!</h2>
 <% } %>
 	<form id="autentificare" action="/verificare-autentificare" method="POST">
+		<label>Rol: </label>
+		<input type="radio" name="rol" value="admin">
+		<label for="rol">Admin</label>
+		<input type="radio" name="rol" value="user">
+		<label for="rol">User</label>
+		<br/>
+		<br/>
 		<label for="user">Utilizator</label>&nbsp;
 		<input type="text" name="user" value="Utilizator">
 		<br/>
